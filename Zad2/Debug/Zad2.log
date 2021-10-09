@@ -1,6 +1,2 @@
 ﻿  Zad2.cpp
-d:\documents\toni kazinoti\vjezba_1\zad1\zad2\zad2.cpp(18): warning C4018: '<': signed/unsigned mismatch
-d:\documents\toni kazinoti\vjezba_1\zad1\zad2\zad2.cpp(20): warning C4018: '<': signed/unsigned mismatch
-d:\documents\toni kazinoti\vjezba_1\zad1\zad2\zad2.cpp(31): warning C4018: '<': signed/unsigned mismatch
-d:\documents\toni kazinoti\vjezba_1\zad1\zad2\zad2.cpp(33): warning C4018: '<': signed/unsigned mismatch
-  Zad2.vcxproj -> D:\Documents\Toni Kazinoti\vjezba_1\Zad1\Debug\Zad2.exe
+  Zad2.vcxproj -> C:\Users\skuez\Downloads\Zad1\Zad1\Debug\Zad2.exe
