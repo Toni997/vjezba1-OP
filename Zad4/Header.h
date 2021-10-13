@@ -2,7 +2,7 @@
 #include <vector>
 
 template<typename T>
-T GetMaxNumberRecursive(const std::vector<T>& array, int maxNumber = NULL, const size_t index = 0)
+T GetMaxNumberRecursive(const std::vector<T>& array, T maxNumber = NULL, const size_t index = 0)
 {
 	if (index == array.size() - 1) return maxNumber;
 	if (index == 0) maxNumber = array[0];
@@ -19,7 +19,7 @@ T BetterGetMaxNumberRecursive(const std::vector<T>& array, const size_t index = 
 }
 
 template<typename T>
-T GetMinNumberRecursive(const std::vector<T>& array, int maxNumber = NULL, const size_t index = 0)
+T GetMinNumberRecursive(const std::vector<T>& array, T maxNumber = NULL, const size_t index = 0)
 {
 	if (index == array.size() - 1) return maxNumber;
 	if (index == 0) maxNumber = array[0];
