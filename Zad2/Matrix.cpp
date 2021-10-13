@@ -14,9 +14,9 @@ Matrix::Matrix(
 }
 
 Matrix::Matrix(
-	int numberOfRows,
-	int numberOfColumns,
-	const bool shouldAutoFill
+	int numberOfRows = NULL,
+	int numberOfColumns = NULL,
+	const bool shouldAutoFill = false
 )
 {
 	if (numberOfRows == NULL || numberOfColumns == NULL)

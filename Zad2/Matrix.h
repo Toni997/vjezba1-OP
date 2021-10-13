@@ -5,24 +5,24 @@
 enum class Operations { Addition, Subtraction, Multiplication };
 
 struct Matrix {
-	Matrix(
+	explicit Matrix(
 		std::vector<std::vector<float>> matrix
 	);
 
 	Matrix(
-		const int numberOfRows = NULL,
-		const int numberOfColumns = NULL,
-		const bool shouldAutoFill = false
+		int numberOfRows,
+		int numberOfColumns,
+		bool shouldAutoFill
 	);
 
 	Matrix(
-		const int numberOfRows,
-		const int numberOfColumns,
+		int numberOfRows,
+		int numberOfColumns,
 		float(&span)[2]
 	);
 
 	void Print() const;
-	void Calculate(const Operations operation, float value = NULL);
+	void Calculate(Operations operation, float value = NULL);
 	void Transpose();
 
 private:
