@@ -100,17 +100,17 @@ void Matrix::Calculate(const Operations operation, float value)
 		{
 			switch (operation)
 			{
-			case Operations::Addition:
-				j += value;
-				break;
-			case Operations::Subtraction:
-				j -= value;
-				break;
-			case Operations::ScalarMultiplication:
-				j *= value;
-				break;
-			default:
-				j += value;
+				case Operations::Addition:
+					j += value;
+					break;
+				case Operations::Subtraction:
+					j -= value;
+					break;
+				case Operations::ScalarMultiplication:
+					j *= value;
+					break;
+				default:
+					j += value;
 			}
 		}
 	}
