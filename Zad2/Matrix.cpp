@@ -121,7 +121,7 @@ void Matrix::Transpose()
 	vector<vector<float>> newMatrix;
 
 	newMatrix.reserve(matrix[0].size());
-	bool shouldEmplace = true;
+	auto shouldEmplace = true;
 	for (auto& i : matrix)
 	{
 		for (size_t j = 0; j < i.size(); j++)
@@ -158,7 +158,7 @@ void Matrix::MultiplyWithMatrix(const std::vector<std::vector<float>> otherMatri
 			
 			float value = 0;
 
-			for(size_t k = 0; k < 3; k++)
+			for(size_t k = 0; k < matrix[0].size(); k++)
 				value += matrix[i][k] * otherMatrix[k][j];
 			
 			newMatrix[i][j] = value;
