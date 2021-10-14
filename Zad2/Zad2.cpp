@@ -12,7 +12,7 @@ int main()
 	srand(time(nullptr));
 
 	// Matrix matrix(2, 4, true);
-	Matrix matrix({ {1,2,3}, {4,5,6}, {7,8,9} });
+	Matrix matrix({ {1,2}, {3,4}, {5,6} });
 	// float span[2] = { 1,5 };
 	// Matrix matrix(4, 2, span);
 	// Matrix matrix;
@@ -21,12 +21,16 @@ int main()
 	cout << "After initialization:";
 	matrix.Print();
 	
-	matrix.Calculate(Operations::Multiplication, 2);
+	matrix.Calculate(Operations::ScalarMultiplication, 2);
 	cout << "After calculation:";
 	matrix.Print();
 	
 	matrix.Transpose();
 	cout << "Transposed:";
+	matrix.Print();
+
+	matrix.MultiplyWithMatrix({ {1,2}, {3,4}, {5,6} });
+	cout << "Multiplied with matrix { {1,2}, {3,4}, {5,6} }:";
 	matrix.Print();
 
 	return EXIT_SUCCESS;

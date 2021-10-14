@@ -2,7 +2,7 @@
 
 #include <vector>
 
-enum class Operations { Addition, Subtraction, Multiplication };
+enum class Operations { Addition, Subtraction, ScalarMultiplication };
 
 struct Matrix {
 	explicit Matrix(
@@ -24,6 +24,7 @@ struct Matrix {
 	void Print() const;
 	void Calculate(Operations operation, float value = NULL);
 	void Transpose();
+	void MultiplyWithMatrix(const std::vector<std::vector<float>> otherMatrix);
 
 private:
 	std::vector<std::vector<float>> matrix;
