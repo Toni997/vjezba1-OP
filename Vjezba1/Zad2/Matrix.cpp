@@ -86,31 +86,28 @@ void Matrix::Print() const
 	cout << endl;
 }
 
-void Matrix::Calculate(const Operations operation, float value)
+void Matrix::AddOrSubtractByMatrix(const Operations operation, const vector<vector<float>>& otherMatrix)
 {
-	if (value == NULL)
-	{
-		cout << "Enter the number:" << endl;
-		cin >> value;
-	}
+	auto check = otherMatrix[0].size();
+	
+	if (matrix.size() != otherMatrix.size()) throw MatricesDoNotAgree();
+	for(size_t i = 0; i < matrix.size(); i++)
+		if (matrix[i].size() != otherMatrix[i].size()) throw MatricesDoNotAgree();
 
-	for (auto& i : matrix)
+	for (size_t i = 0; i < matrix.size(); i++)
 	{
-		for (auto& j : i)
+		for (size_t j = 0; j < matrix[0].size(); j++)
 		{
 			switch (operation)
 			{
 				case Operations::Addition:
-					j += value;
+					matrix[i][j] = matrix[i][j] + otherMatrix[i][j];
 					break;
 				case Operations::Subtraction:
-					j -= value;
-					break;
-				case Operations::ScalarMultiplication:
-					j *= value;
+					matrix[i][j] = matrix[i][j] - otherMatrix[i][j];
 					break;
 				default:
-					j += value;
+					matrix[i][j] = matrix[i][j] + otherMatrix[i][j];
 			}
 		}
 	}
@@ -132,12 +129,12 @@ void Matrix::Transpose()
 		shouldEmplace = false;
 	}
 
-	matrix = newMatrix;
+	matrix = move(newMatrix);
 }
 
-void Matrix::MultiplyWithMatrix(const std::vector<std::vector<float>> otherMatrix)
+void Matrix::MultiplyByMatrix(const std::vector<std::vector<float>>& otherMatrix)
 {
-	if (matrix[0].size() != otherMatrix.size()) return;
+	if (matrix[0].size() != otherMatrix.size()) throw MatricesDoNotAgree();
 	
 	vector<vector<float>> newMatrix;
 	
@@ -165,6 +162,6 @@ void Matrix::MultiplyWithMatrix(const std::vector<std::vector<float>> otherMatri
 		}
 	}
 
-	matrix = newMatrix;
+	matrix = move(newMatrix);
 }
 

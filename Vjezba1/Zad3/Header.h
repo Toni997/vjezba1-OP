@@ -12,7 +12,6 @@ T GetMaxNumberIterative(const std::vector<T>& array)
 		{
 			maxNumber = array[i];
 		}
-
 	}
 
 	return maxNumber;

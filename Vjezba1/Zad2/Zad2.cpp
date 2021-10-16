@@ -20,16 +20,24 @@ int main()
 	cout << endl;
 	cout << "After initialization:";
 	matrix.Print();
+
+	try
+	{
+		matrix.AddOrSubtractByMatrix(Operations::Addition, { {1,1}, {1,1}, {1,1} });
+		cout << "After calculation:";
+		matrix.Print();
+
+	} catch(MatricesDoNotAgree& e)
+	{
+		cout << e.what() << endl;
+	}
 	
-	matrix.Calculate(Operations::ScalarMultiplication, 2);
-	cout << "After calculation:";
-	matrix.Print();
 	
 	matrix.Transpose();
 	cout << "Transposed:";
 	matrix.Print();
 
-	matrix.MultiplyWithMatrix({ {1,2}, {3,4}, {5,6} });
+	matrix.MultiplyByMatrix({ {1,2}, {3,4}, {5,6} });
 	cout << "Multiplied with matrix { {1,2}, {3,4}, {5,6} }:";
 	matrix.Print();
 
