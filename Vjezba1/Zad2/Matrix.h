@@ -4,9 +4,9 @@
 
 enum class Operations { Addition, Subtraction, Multiplication };
 
-struct MatricesDoNotAgree : std::exception
+struct MatricesDoNotAgree final : std::exception
 {
-	const char* what() const noexcept override
+	char const* what() const override
 	{
 		return "ERROR: Matrices do not agree.";
 	}
@@ -15,6 +15,10 @@ struct MatricesDoNotAgree : std::exception
 struct Matrix {
 	explicit Matrix(
 		std::vector<std::vector<float>> matrix
+	);
+	
+	explicit Matrix(
+		std::vector<std::vector<float>>&& matrix
 	);
 
 	Matrix(
@@ -26,7 +30,7 @@ struct Matrix {
 	Matrix(
 		int numberOfRows,
 		int numberOfColumns,
-		float(&span)[2]
+		float span[2]
 	);
 
 	void Print() const;

@@ -7,15 +7,11 @@
 
 using namespace std;
 
-int main()
+int main()  // NOLINT(bugprone-exception-escape)
 {
 	srand(time(nullptr));
 
-	// Matrix matrix(2, 4, true);
 	Matrix matrix({ {1,2}, {3,4}, {5,6} });
-	// float span[2] = { 1,5 };
-	// Matrix matrix(4, 2, span);
-	// Matrix matrix;
 
 	cout << endl;
 	cout << "After initialization:";

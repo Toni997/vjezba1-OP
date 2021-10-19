@@ -7,10 +7,15 @@
 
 using namespace std;
 
+Matrix::Matrix(vector<vector<float>> matrix) : matrix(std::move(matrix))
+{
+}
+
 Matrix::Matrix(
-	vector<vector<float>> matrix
+	vector<vector<float>>&& matrix
 ) : matrix(move(matrix))
 {
+	cout << endl << "move constructor called" << endl;
 }
 
 Matrix::Matrix(
@@ -55,7 +60,7 @@ Matrix::Matrix(
 Matrix::Matrix(
 	const int numberOfRows,
 	const int numberOfColumns,
-	float(&span)[2]
+	float span[2]
 )
 {
 	matrix.reserve(numberOfRows);
