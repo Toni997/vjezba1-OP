@@ -24,7 +24,6 @@ void MyVector::vector_push_back(int n)
 
         delete[] arr;
         arr = newArr;
-        // delete[] newArr;
         capacity *= 2;
     }
 
