@@ -41,24 +41,26 @@ void MyVector::vector_pop_back()
     
 }
 
-int& MyVector::vector_front()
+int& MyVector::vector_front() const
 {
 	if(size > 0)
         return arr[0];
+    throw std::invalid_argument("Vector is empty.");
 }
 
-int& MyVector::vector_back()
+int& MyVector::vector_back() const
 {
     if (size > 0)
 	    return arr[size - 1];
+    throw std::invalid_argument("Vector is empty.");
 }
 
-size_t MyVector::vector_size()
+size_t MyVector::vector_size() const
 {
     return size;
 }
 
-size_t MyVector::vector_capacity()
+size_t MyVector::vector_capacity() const
 {
     return capacity;
 }
@@ -71,7 +73,7 @@ const int& MyVector::operator[](const size_t index) const
 	return arr[index];
 }
 
-void MyVector::print_vector()
+void MyVector::print_vector() const
 {
     for (size_t i = 0; i < vector_size(); ++i)
         std::cout << arr[i] << " ";
