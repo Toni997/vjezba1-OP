@@ -45,14 +45,12 @@ int& MyVector::vector_front() const
 {
 	if(size > 0)
         return arr[0];
-    throw std::invalid_argument("Vector is empty.");
 }
 
 int& MyVector::vector_back() const
 {
     if (size > 0)
 	    return arr[size - 1];
-    throw std::invalid_argument("Vector is empty.");
 }
 
 size_t MyVector::vector_size() const
@@ -67,10 +65,8 @@ size_t MyVector::vector_capacity() const
 
 const int& MyVector::operator[](const size_t index) const
 {
-    if (index >= size)
-        throw std::invalid_argument("Index out of range");
-	
-	return arr[index];
+    if (index <= size)
+        return arr[index];
 }
 
 void MyVector::print_vector() const
