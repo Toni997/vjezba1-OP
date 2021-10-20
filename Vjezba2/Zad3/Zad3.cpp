@@ -8,7 +8,8 @@ struct Point {
 
 struct Circle
 {
-	Circle(const Point origin, const float radius) : origin(origin), radius(radius)	{}
+	Circle(const Point& origin, const float radius)
+		: origin(origin), radius(radius)	{}
 	Point origin;
 	float radius;
 };
