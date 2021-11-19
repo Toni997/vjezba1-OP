@@ -18,12 +18,31 @@ int main()
     cout << "3D udaljenost: " << point.CalculateDistance3D(point2) << endl;
 
 	// 4. zad
-    Weapon weapon(point, 8);
+    // generating a weapon
+    Weapon weapon;
+    weapon.SetPositionRandom(1, 5);
     weapon.Reload();
 	
+    // generating targets
     std::vector<Target> targets;
     targets.reserve(10);
+    
+	for (auto i = 0; i < 10; i++)
+    {
+        Target target;
+        target.SetBottomLeftRandom(1, 5);
+        target.SetTopRightRandom(1, 5);
+        targets.emplace_back(target);
+    }
 
-	// generiraj mete i izracunaj koliko ih je pogodjeno sa oruzjen :)
+    unsigned targetsHit = 0;
+
+    for (auto& target : targets)
+    {
+        weapon.Shoot(target);
+        targetsHit++;
+    }
+
+    cout << "Targets hit: " << targetsHit << endl;
 
 }
