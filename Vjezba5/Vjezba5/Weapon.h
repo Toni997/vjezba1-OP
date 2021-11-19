@@ -11,6 +11,6 @@ public:
 	Weapon(const Point& position, const unsigned capacity) :
 		_position(position), _capacity(capacity) {}
 	
-	void Shoot() { _ammo--;	}
+	void Shoot() { if(_ammo > 0) _ammo--; }
 	void Reload() {	_ammo = _capacity; }
 };
