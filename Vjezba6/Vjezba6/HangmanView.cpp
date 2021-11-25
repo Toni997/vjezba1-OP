@@ -155,7 +155,7 @@ void HangmanView::DisplayEndGame(const std::string& movie, const unsigned lives)
 	else
 	{
 		std::cout << std::endl << "WIN!" << std::endl << std::endl;
-		std::cout << "Movie: " << movie << std::endl << std::endl;
+		std::cout << "Correct answer: " << movie << std::endl << std::endl;
 	}
 }
 
