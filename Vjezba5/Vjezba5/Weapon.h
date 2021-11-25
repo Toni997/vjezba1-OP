@@ -11,6 +11,9 @@ public:
 	Weapon(const Point& position, const unsigned capacity) :
 		_position(position), _capacity(capacity) {}
 	
-	void Shoot() { _ammo--;	}
+	void Shoot();
 	void Reload() {	_ammo = _capacity; }
+	unsigned GetCapacity() { return _capacity; }
+	Point& GetPosition() { return _position; }
+	void SetPositionRandom() { _position.SetXYZRandom(1, 5); };
 };
