@@ -1,7 +1,7 @@
 #include <iostream>
 #include "HangmanView.h"
 
-void HangmanView::DisplayGameStats(const std::string& guessMovie, const unsigned lives)
+void HangmanView::DisplayGameStats(const std::string& guess_movie, const unsigned lives)
 {
 	switch(lives)
 	{
@@ -129,12 +129,12 @@ void HangmanView::DisplayGameStats(const std::string& guessMovie, const unsigned
 	}
     std::cout << std::endl;
     std::cout << "Lives: " << lives << std::endl;
-    std::cout << "Guess: " << guessMovie << std::endl;
+    std::cout << "Guess: " << guess_movie << std::endl;
 }
 
 void HangmanView::DisplayEndGame(const std::string& movie, const unsigned lives)
 {
-	if(lives <= 0)
+	if (lives <= 0)
 	{
 		std::cout << R"(
 	    _________

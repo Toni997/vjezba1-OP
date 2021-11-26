@@ -4,17 +4,7 @@
 
 int main()
 {
-	const auto hangman = std::make_shared<Hangman>();
-	const auto hangmanView = std::make_shared<HangmanView>();
+	const auto hangman_ctrl = HangmanController{ std::make_unique<Hangman>(), std::make_unique<HangmanView>() };
 
-	const auto hangmanController = HangmanController{ hangman, hangmanView };
-
-	while(!hangmanController.CheckIfGameIsOver())
-	{
-		hangmanController.DisplayGameStats();
-		const auto letter = hangmanController.UserEntry();
-		hangmanController.CheckLetterAndUpdateModel(letter);
-	}
-
-	hangmanController.DisplayEndGame();
+	hangman_ctrl.PlayGame();
 }

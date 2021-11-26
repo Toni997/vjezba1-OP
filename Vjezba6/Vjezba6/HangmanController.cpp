@@ -1,8 +1,20 @@
 #include "HangmanController.h"
 
+void HangmanController::PlayGame() const
+{
+	while (!IsGameOver())
+	{
+		DisplayGameStats();
+		CheckLetterAndUpdateModel(UserEntry());
+	}
+
+	DisplayEndGame();
+}
+
+
 char HangmanController::UserEntry() const
 {
-	auto& entries = _hangman->GetEntries();
+	auto& entries = hangman_->GetEntries();
 	char letter{};
 	
 	while (!std::isalnum(letter) || entries.find(std::tolower(letter)) != entries.end())
@@ -17,24 +29,24 @@ char HangmanController::UserEntry() const
 
 void HangmanController::CheckLetterAndUpdateModel(const char letter) const
 {
-	auto isGoodGuess = false;
-	const char letterLowerCase = std::tolower(letter);
-	const auto movie = _hangman->GetMovie();
-	auto movieLowerCase = movie;
-	transform(movieLowerCase.begin(), movieLowerCase.end(), movieLowerCase.begin(), std::tolower);
+	auto is_good_guess = false;
+	const char letter_lower_case = std::tolower(letter);
+	const auto movie = hangman_->GetMovie();
+	auto movie_lower_case = movie;
+	transform(movie_lower_case.begin(), movie_lower_case.end(), movie_lower_case.begin(), std::tolower);
 
-	auto newGuess = _hangman->GetGuessMovie();
-	const auto movieSize = movieLowerCase.size();
+	auto new_guess = hangman_->GetGuessMovie();
+	const auto movie_size = movie_lower_case.size();
 
-	for (size_t i = 0; i < movieSize; i++)
+	for (size_t i = 0; i < movie_size; i++)
 	{
-		if (movieLowerCase.at(i) == letterLowerCase)
+		if (movie_lower_case.at(i) == letter_lower_case)
 		{
-			newGuess.at(i) = _hangman->GetMovie().at(i);
-			isGoodGuess = true;
+			new_guess.at(i) = hangman_->GetMovie().at(i);
+			is_good_guess = true;
 		}
 	}
 	
-	_hangman->SetGuessMovie(newGuess);
-	if (!isGoodGuess) _hangman->DecreaseLives();
+	hangman_->SetGuessMovie(new_guess);
+	if (!is_good_guess) hangman_->DecreaseLives();
 }

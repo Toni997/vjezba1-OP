@@ -5,7 +5,7 @@
 class HangmanView final : public IHangmanView
 {
 public:
-	void DisplayGameStats(const std::string& guessMovie, unsigned lives) override;
+	void DisplayGameStats(const std::string& guess_movie, unsigned lives) override;
 	void DisplayEndGame(const std::string& movie, unsigned lives) override;
 };
 

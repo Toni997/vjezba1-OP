@@ -12,7 +12,7 @@ public:
 	virtual std::set<char>& GetEntries() = 0;
 
 	virtual void SetMovie(const std::string& movie) = 0;
-	virtual void SetGuessMovie(const std::string& guessMovie) = 0;
+	virtual void SetGuessMovie(const std::string& guess_movie) = 0;
 	virtual void SetLives(unsigned lives) = 0;
 	
 	virtual void ResetLives() = 0;

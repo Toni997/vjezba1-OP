@@ -6,28 +6,30 @@
 class HangmanController
 {
 public:
-	HangmanController(std::shared_ptr<IHangman> hangman, std::shared_ptr<IHangmanView> hangmanView) :
-	_hangman(std::move(hangman)), _hangmanView(std::move(hangmanView)) {  }
+	HangmanController(std::unique_ptr<IHangman> hangman, std::unique_ptr<IHangmanView> hangman_view) :
+	hangman_(std::move(hangman)), hangman_view_(std::move(hangman_view)) {  }
 
+	void PlayGame() const;
+
+private:
 	char UserEntry() const;
 	void CheckLetterAndUpdateModel(char letter) const;
 
-	unsigned CheckIfGameIsOver() const
+	bool IsGameOver() const
 	{
-		return _hangman->GetLives() <= 0 || _hangman->GetGuessMovie() == _hangman->GetMovie();
+		return hangman_->GetLives() <= 0 || hangman_->GetGuessMovie() == hangman_->GetMovie();
 	}
 
 	void DisplayGameStats() const
 	{
-		_hangmanView->DisplayGameStats(_hangman->GetGuessMovie(), _hangman->GetLives());
+		hangman_view_->DisplayGameStats(hangman_->GetGuessMovie(), hangman_->GetLives());
 	}
 
 	void DisplayEndGame() const
 	{
-		_hangmanView->DisplayEndGame(_hangman->GetMovie(), _hangman->GetLives());
+		hangman_view_->DisplayEndGame(hangman_->GetMovie(), hangman_->GetLives());
 	}
 	
-private:
-	std::shared_ptr<IHangman> _hangman;
-	std::shared_ptr<IHangmanView> _hangmanView;
+	std::unique_ptr<IHangman> hangman_;
+	std::unique_ptr<IHangmanView> hangman_view_;
 };

@@ -3,7 +3,7 @@
 #include <functional>
 #include <random>
 
-bool isNotAlnumOrSpace(char ch)
+bool IsNotAlnumOrSpace(const char ch)
 {
 	return !std::isalnum(static_cast<unsigned char>(ch)) && !std::isspace(static_cast<unsigned char>(ch));
 }
@@ -12,27 +12,27 @@ Hangman::Hangman()
 {
 	std::ifstream movies("movie.txt");
 
-	std::string tempMovie;
-	while (getline(movies, tempMovie))
-		_moviesList.emplace_back(tempMovie);
+	std::string temp_movie;
+	while (getline(movies, temp_movie))
+		movies_list_.emplace_back(temp_movie);
 
-	_movie = _moviesList.at(getRandom(0, _moviesList.size() - 1));
+	movie_ = movies_list_.at(GetRandom(0, movies_list_.size() - 1));
 
 	// remove all special characters
-	_movie.erase(std::remove_if(_movie.begin(), _movie.end(),
-		isNotAlnumOrSpace), _movie.end());
+	movie_.erase(std::remove_if(movie_.begin(), movie_.end(),
+		IsNotAlnumOrSpace), movie_.end());
 
 	// remove all multiple spaces in a row
-	auto doubleSpace = _movie.find("  ");
-	while (doubleSpace != std::string::npos)
+	auto double_space = movie_.find("  ");
+	while (double_space != std::string::npos)
 	{
-		_movie.erase(doubleSpace, 1);
-		doubleSpace = _movie.find("  ");
+		movie_.erase(double_space, 1);
+		double_space = movie_.find("  ");
 	}
 
-	_guessMovie = _movie;
+	guess_movie_ = movie_;
 
-	for(auto& ch : _guessMovie)
+	for(auto& ch : guess_movie_)
 		if (!std::isspace(ch))
 			ch = '_';
 
@@ -41,14 +41,14 @@ Hangman::Hangman()
 
 void Hangman::SelectNewRandomMovie()
 {
-	SetMovie(_moviesList.at(getRandom(0, _moviesList.size() - 1)));
+	SetMovie(movies_list_.at(GetRandom(0, movies_list_.size() - 1)));
 }
 
-int Hangman::getRandom(const int min, const int max) const
+int Hangman::GetRandom(const int min, const int max)
 {
 	std::random_device rd;     // only used once to initialise (seed) engine
 	std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
-	std::uniform_int_distribution<int> uni(min, max); // guaranteed unbiased
+	const std::uniform_int_distribution<int> uni(min, max); // guaranteed unbiased
 
 	return uni(rng);
 }
