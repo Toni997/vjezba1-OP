@@ -83,9 +83,9 @@ void Board::Display() const
 	{
 		for (int j = 0; j < m_columns; j++)
 		{
-			printf("%c", m_board[i][j]);
+			std::cout << m_board[i][j];
 		}
-		printf("\n");
+		std::cout << std::endl;
 	}
 }
 
