@@ -15,7 +15,7 @@ void sort(T* arr, int n)
 }
 
 template<>
-void sort(char* arr, int n)
+void sort<char>(char* arr, int n)
 {
 	for (int i = 1; i < n; i++) {
 		int j = i;
