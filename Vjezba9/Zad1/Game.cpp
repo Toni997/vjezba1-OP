@@ -1,47 +1,33 @@
 #include "Game.h"
 #include <iostream>
 
+Game::Game(std::vector<Player*> players, const int pointsNeededToWin) :
+	m_players(std::move(players)), m_pointsNeededToWin(pointsNeededToWin) {}
+
 void Game::Play()
 {
 	while(true)
 	{
-		for (auto* player : m_players)
+		for (auto player : m_players)
 		{
 			std::cout << std::endl << "It's " << player->GetName() << " turn to choose coins." << std::endl << std::endl;
 			HandleChooseCoins(player);
 		}
 
-		for (auto* player : m_players)
+		for (auto player : m_players)
 		{
 			std::cout << std::endl << "It's " << player->GetName() << " turn to guess opponents coins." << std::endl << std::endl;
 			
-			for (auto* opponent : m_players)
+			for (auto opponent : m_players)
 			{
-				if (*player == *opponent) continue;
-				
-				std::cout << "Guess how many coins does " << opponent->GetName() << " have:" << std::endl;
-				const int coinCountGuess = player->GuessCoinCount();
-				
-				const int opponentCoins = opponent->GetCoinCount();
-				if (coinCountGuess == opponentCoins)
+				HandleGuessCoins(player, opponent);
+				if (CheckIfPlayerIsWinner(player))
 				{
-					player->IncrementCoins();
-					std::cout << "Congrats " << player->GetName() << ", you guessed right! You now have " << player->GetPoints() << " points in total." << std::endl << std::endl;
-				}
-				else
-				{
-					std::cout << "Sorry pal, you guessed wrong." << std::endl << std::endl;
-
-				}
-
-				if (player->GetPoints() >= m_pointsNeededToWin)
-				{
-					HandleEndGame(player);
+					HandleEndGame(player->GetName());
 					return;
 				}
 			}
 		}
-		
 	}
 }
 
@@ -62,7 +48,31 @@ void Game::HandleChooseCoins(Player* player)
 	std::cout << std::endl;
 }
 
-void Game::HandleEndGame(const Player* winner) const
+void Game::HandleGuessCoins(Player* player, Player* opponent)
 {
-	std::cout << std::endl << std::endl << "We have a WINNER! " << winner->GetName() << " is the first to reach " << m_pointsNeededToWin << " points." << std::endl;
+	if (&(*player) == &(*opponent)) return;
+
+	std::cout << "Guess how many coins does " << opponent->GetName() << " have:" << std::endl;
+	int coinCountGuess = player->GuessCoinCount();
+
+	const int opponentCoins = opponent->GetCoinCount();
+	if (coinCountGuess == opponentCoins)
+	{
+		player->IncrementPoints();
+		std::cout << "Congrats " << player->GetName() << ", you guessed right! You now have " << player->GetPoints() << " points in total." << std::endl << std::endl;
+	}
+	else
+	{
+		std::cout << "Sorry pal, you guessed wrong." << std::endl << std::endl;
+	}
+}
+
+void Game::HandleEndGame(const std::string& name) const
+{
+	std::cout << std::endl << std::endl << "We have a WINNER! " << name << " is the first to reach " << m_pointsNeededToWin << " points." << std::endl;
+}
+
+bool Game::CheckIfPlayerIsWinner(Player* player) const
+{
+	return player->GetPoints() >= m_pointsNeededToWin;
 }

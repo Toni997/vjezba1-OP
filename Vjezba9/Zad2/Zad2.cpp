@@ -1,7 +1,4 @@
 #include <iostream>
-
-
-
 #include "Brojac.h"
 #include "Tarantula.h"
 #include "Vrabac.h"

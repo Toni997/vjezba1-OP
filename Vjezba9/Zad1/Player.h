@@ -11,18 +11,13 @@ public:
 
 	virtual ~Player() = default;
 
-	bool operator==(const Player& other)
-	{
-		return this == &other;
-	}
-
 	void ClearCoins() { m_coins.clear(); }
 	int GetPoints() const { return m_points; }
 	std::string GetName() const { return m_name; }
 	std::vector<int>& GetCoins() { return m_coins; }
 	int GetCoinCount();
 
-	void IncrementCoins() { m_points++; }
+	void IncrementPoints() { m_points++; }
 	
 	virtual void ChooseCoins();
 	virtual int GuessCoinCount();
